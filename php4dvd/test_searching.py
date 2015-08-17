@@ -24,8 +24,6 @@ class Untitled(unittest.TestCase):
         driver.find_element_by_name("password").send_keys("admin")
         driver.find_element_by_name("submit").click()
         driver.find_element_by_id("q").clear()
-        driver.find_element_by_id("q").send_keys("")
-        driver.find_element_by_id("q").clear()
         driver.find_element_by_id("q").send_keys("qwerty")
         driver.find_element_by_id("q").send_keys(Keys.ENTER)
         self.assertEqual("No movies where found.", driver.find_element_by_css_selector("div.content").text)

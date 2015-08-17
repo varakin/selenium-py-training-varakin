@@ -17,17 +17,20 @@ class Untitled2(unittest.TestCase):
     
     def test_untitled2(self):
         driver = self.driver
-        driver.get(self.base_url + "/php4dvd/")
+        driver.get(self.base_url + "php4dvd/")
         driver.find_element_by_id("username").clear()
         driver.find_element_by_id("username").send_keys("admin")
         driver.find_element_by_name("password").clear()
         driver.find_element_by_name("password").send_keys("admin")
         driver.find_element_by_name("submit").click()
-        driver.find_element_by_id("q").clear()
-        driver.find_element_by_id("q").send_keys("")
+
+        movies = driver.find_elements_by_class_name('movie_box')
         driver.find_element_by_id("q").clear()
         driver.find_element_by_id("q").send_keys("good")
         driver.find_element_by_id("q").send_keys(Keys.ENTER)
+        time.sleep(1)
+        movies_found = driver.find_elements_by_class_name('movie_box')
+        self.assertNotEqual(len(movies), len(movies_found))
         self.assertEqual("good", driver.find_element_by_css_selector("div.title").text)
         driver.find_element_by_link_text("Log out").click()
     
